@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handmade Crochet Creations - Ad</title>
+    
+    <link rel="stylesheet" href="cdnjs.cloudflare.com">
+    
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #ff69b4;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 3em;
+        }
+
+        header p {
+            font-size: 1.2em;
+        }
+
+        main {
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .product-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .product-card img {
+            width: 100%;
+            height: auto;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            background-color: #e0e0e0; 
+            min-height: 200px; 
+            object-fit: cover;
+        }
+
+        .price {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #ff69b4;
+            margin: 10px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #ff69b4;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            transition: background 0.3s ease, transform 0.6s ease;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: #e05c9c;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .spinning {
+            animation: spin 0.6s linear forwards;
+        }
+
+        #customPopup {
+            visibility: hidden;
+            min-width: 300px;
+            background-color: #333;
+            color: white;
+            text-align: center;
+            border-radius: 8px;
+            padding: 20px;
+            position: fixed;
+            z-index: 100;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            transition: visibility 0s, opacity 0.5s linear;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        #customPopup.show {
+            visibility: visible;
+            opacity: 1;
+            transition: opacity 0.5s linear;
+        }
+
+        .contact-section {
+            background-color: white;
+            padding: 40px;
+            text-align: center;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info a {
+            color: #ff69b4;
+            text-decoration: none;
+        }
+
+        .contact-info i {
+            margin-right: 8px;
+            color: #ff69b4;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #333;
+            color: white;
+            margin-top: 20px;
+        }
+
+        #birthdayPopup {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 100%);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            color: white;
+            flex-direction: column;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+        }
+
+        #birthdayPopup h1 {
+            font-size: 5em;
+            margin-bottom: 20px;
+            animation: bounce 2s infinite;
+        }
+
+        #birthdayPopup p {
+            font-size: 2em;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-30px);
+            }
+            60% {
+                transform: translateY(-15px);
+            }
+        }
+
+        .monkey-container {
+            position: relative;
+            margin-top: 20px;
+        }
+
+        .monkey-img {
+            width: 200px;
+            height: auto;
+            border-radius: 50%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            animation: monkeySpin 3s linear infinite; 
+        }
+
+        @keyframes monkeySpin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .party-hat {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            font-size: 4em;
+            transform: rotate(20deg);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            cursor: pointer;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            transition: transform 0.3s ease;
+        }
+
+        .close-btn:hover {
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Beautiful Crochet Creations</h1>
+        <p>Handmade with love. Unique designs for every occasion.</p>
+    </header>
+
+    <main>
+        <section class="product-grid">
+            
+            <div class="product-card">
+                <img src="scarf.jpg" alt="A cozy, pink and white striped crochet scarf">
+                <h2>Cozy Winter Scarf</h2>
+                <p class="price">$10.00</p>
+                <p>Soft, warm, and stylish. Perfect for chilly evenings.</p>
+                <a href="#" class="btn order-btn" id="order-scarf" data-product-name="Cozy Winter Scarf">Order Now</a>
+            </div>
+
+            <div class="product-card">
+                <img src="flower.jpg" alt="Bulk customizable crochet flowers in various colors">
+                <h2>Flowers in bulk (Customizable)</h2>
+                <p class="price">$20.00+</p>
+                <p>A cute companion for kids or collectors. Make it your own!</p>
+                <a href="#" class="btn order-btn" id="order-flowers" data-product-name="Custom Flowers">Customize & Order</a>
+            </div>
+
+            <div class="product-card">
+                <img src="keychain.jpg" alt="Various small crochet keychains, perhaps animals or shapes">
+                <h2>Keychains Chrochets</h2>
+                <p class="price">$7.50</p>
+                <p>Lightweight and trendy. The perfect addition to your summer wardrobe.</p>
+                <a href="#" class="btn order-btn" id="order-keychains" data-product-name="Crochet Keychains">Order Now</a>
+            </div>
+
+        </section>
+
+        <section class="contact-section">
+            <h2>Get Your Custom Order Today!</h2>
+            <p>We love creating unique pieces just for you. Contact us to discuss your ideas.</p>
+            <div class="contact-info">
+                <p><i class="fas fa-envelope"></i> Email: <a href="mailto:princessbhaupatel@gmail.com"> princessbhaupatel@gmail.com</a></p>
+                <p><i class="fas fa-phone"></i> Phone: (240) 423-7811</p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Crochet Creations Co. | Advertise with us.</p>
+    </footer>
+
+    <div id="customPopup">
+        <p id="popupMessage"></p>
+    </div>
+
+    <div id="birthdayPopup">
+        <span class="close-btn" id="closeBirthdayPopup">&times;</span>
+        <h1>HAPPY BIRTHDAY MOM!</h1>
+        <div class="monkey-container">
+            <img src="monkey.jpg" alt="A cute monkey wearing a party hat" class="monkey-img">
+            <span class="party-hat">🥳</span>
+        </div>
+        <p>We hope you have a fantastic day! 💖</p>
+    </div>
+
+    <script>
+        const orderButtons = document.querySelectorAll('.order-btn');
+        const customPopup = document.getElementById('customPopup');
+        const popupMessage = document.getElementById('popupMessage');
+        const birthdayPopup = document.getElementById('birthdayPopup');
+        const closeBirthdayPopupButton = document.getElementById('closeBirthdayPopup');
+
+        let clickCounts = {
+            'order-scarf': 0,
+            'order-flowers': 0,
+            'order-keychains': 0
+        };
+        
+        const BIRTHDAY_THRESHOLD = 2;
+        let birthdayShown = false;
+
+        function showBirthdayPopup() {
+            if (!birthdayShown) {
+                birthdayPopup.style.display = 'flex';
+                birthdayShown = true;
+            }
+        }
+
+        function closeBirthdayPopup() {
+            birthdayPopup.style.display = 'none';
+            
+            clickCounts = {
+                'order-scarf': 0,
+                'order-flowers': 0,
+                'order-keychains': 0
+            };
+            
+            birthdayShown = false;
+            console.log("Birthday counts reset. Can be triggered again.");
+        }
+
+        function checkBirthdayTrigger() {
+            if (!birthdayShown) {
+                if (clickCounts['order-scarf'] >= BIRTHDAY_THRESHOLD &&
+                    clickCounts['order-flowers'] >= BIRTHDAY_THRESHOLD &&
+                    clickCounts['order-keychains'] >= BIRTHDAY_THRESHOLD) {
+                    showBirthdayPopup();
+                }
+            }
+        }
+
+        closeBirthdayPopupButton.addEventListener('click', closeBirthdayPopup);
+
+        orderButtons.forEach(button => {
+            button.addEventListener('click', function(event) {
+                event.preventDefault();
+
+                if (!this.classList.contains('spinning')) {
+                    this.classList.add('spinning');
+                    this.addEventListener('animationend', () => {
+                        this.classList.remove('spinning');
+                    }, { once: true });
+                }
+
+                const buttonId = this.id;
+                if (clickCounts.hasOwnProperty(buttonId)) {
+                    clickCounts[buttonId]++;
+                }
+
+                console.log("Current Clicks:", clickCounts);
+
+                const productName = this.getAttribute('data-product-name');
+                const message = `Sorry! The order function for "${productName}" is not yet available. Still in development.`;
+                
+                popupMessage.textContent = message;
+                customPopup.classList.add('show');
+
+                setTimeout(function() {
+                    customPopup.classList.remove('show');
+                }, 10000);
+
+                checkBirthdayTrigger();
+            });
+        });
+    </script>
+
+</body>
+</html>
