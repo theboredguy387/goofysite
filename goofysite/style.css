@@ -1,0 +1,97 @@
+body {
+  margin: 0;
+  font-family: system-ui;
+  background: #0f1220;
+  color: white;
+}
+
+header {
+  display: flex;
+  gap: 12px;
+  padding: 12px;
+  background: #15193a;
+  align-items: center;
+}
+
+input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: none;
+}
+
+#tabs {
+  display: flex;
+  gap: 8px;
+  padding: 10px;
+  background: #0c0f2b;
+  overflow-x: auto;
+}
+
+#tabs button {
+  background: #1e2359;
+  color: white;
+  border: none;
+  padding: 6px 14px;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+#tabs button:hover {
+  background: #2b31a3;
+}
+
+#games {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 14px;
+  padding: 14px;
+}
+
+.game {
+  position: relative;
+  background: #1e2359;
+  padding: 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  text-align: center;
+}
+
+.game img {
+  width: 100%;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.game span {
+  display: block;
+  margin-top: 6px;
+}
+
+.game small {
+  font-size: 12px;
+  opacity: 0.7;
+}
+
+.fav {
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  background: none;
+  border: none;
+  color: gold;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#playerWrap {
+  padding: 10px;
+}
+
+#player {
+  width: 100%;
+  height: 70vh;
+  border: none;
+  border-radius: 12px;
+}
