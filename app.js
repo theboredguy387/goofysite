@@ -1,85 +1,49 @@
 window.onload = () => {
-
   const gamesDiv = document.getElementById("games");
   const search = document.getElementById("search");
   const player = document.getElementById("player");
-  const sidebar = document.getElementById("sidebar");
+  const rail = document.getElementById("rail");
+  const shell = document.getElementById("gameShell");
 
   const games = [
-    {
-      name: "Happy Wheels",
-      url: "https://genizymath.github.io/games/happy-wheels/"
-    },
-    {
-      name: "Slope",
-      url: "https://genizymath.github.io/games/slope/"
-    },
-    {
-      name: "Run 1",
-      url: "https://genizymath.github.io/games/run-1/"
-    },
-    {
-      name: "House of Hazards",
-      url: "https://genizymath.github.io/games/house-of-hazards/"
-    }
+    { name: "Stickman Hook", url: "https://genizymath.github.io/games/stickman-hook/" },
+    { name: "Happy Wheels", url: "https://genizymath.github.io/games/happy-wheels/" },
+    { name: "House of Hazards", url: "https://genizymath.github.io/games/house-of-hazards/" }
   ];
 
   function render() {
     gamesDiv.innerHTML = "";
     const q = search.value.toLowerCase();
 
-    games
-      .filter(g => g.name.toLowerCase().includes(q))
+    games.filter(g => g.name.toLowerCase().includes(q))
       .forEach(g => {
         const d = document.createElement("div");
         d.className = "game";
         d.textContent = g.name;
-        d.onclick = () => launchGame(g.url);
+        d.onclick = () => launch(g.url);
         gamesDiv.appendChild(d);
       });
   }
 
-  function launchGame(url) {
+  function launch(url) {
     player.src = url;
 
-    gamesDiv.style.display = "none";
     search.style.display = "none";
-    sidebar.style.display = "flex";
-
-    player.style.position = "fixed";
-    player.style.top = "0";
-    player.style.left = "60px";
-    player.style.width = "calc(100% - 60px)";
-    player.style.height = "100vh";
-    player.style.zIndex = "9999";
-
-    if (player.requestFullscreen) {
-      player.requestFullscreen();
-    } else if (player.webkitRequestFullscreen) {
-      player.webkitRequestFullscreen();
-    }
+    gamesDiv.style.display = "none";
+    rail.style.display = "flex";
+    shell.style.display = "block";
   }
 
   window.exitGame = () => {
     player.src = "";
-
-    if (document.fullscreenElement) {
-      document.exitFullscreen();
-    }
-
-    sidebar.style.display = "none";
-    gamesDiv.style.display = "flex";
+    rail.style.display = "none";
+    shell.style.display = "none";
     search.style.display = "block";
-
-    player.style.position = "relative";
-    player.style.width = "100%";
-    player.style.height = "500px";
+    gamesDiv.style.display = "grid";
   };
 
-  window.goHome = () => {
-    exitGame();
-  };
+  window.goHome = () => exitGame();
 
-  search.addEventListener("input", render);
+  search.oninput = render;
   render();
 };
