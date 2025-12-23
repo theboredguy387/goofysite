@@ -3,10 +3,40 @@ const favorites = JSON.parse(localStorage.getItem("favorites") || "[]");
 
 const games = [
   {
+    name: "Happy Wheels",
+    category: "Arcade",
+    path: "https://genizymath.github.io/games/happy-wheels/",
+    thumb: "default.png"
+  },
+  {
+    name: "Sort the Court",
+    category: "Arcade",
+    path: "https://genizymath.github.io/games/sort-the-court/",
+    thumb: "default.png"
+  },
+  {
+    name: "Run 1",
+    category: "Arcade",
+    path: "https://genizymath.github.io/games/run-1/",
+    thumb: "default.png"
+  },
+  {
+    name: "Slope",
+    category: "Arcade",
+    path: "https://genizymath.github.io/games/slope/",
+    thumb: "default.png"
+  },
+  {
+    name: "Tag",
+    category: "Arcade",
+    path: "https://genizymath.github.io/games/tag/",
+    thumb: "default.png"
+  },
+  {
     name: "Demo Click Game",
     category: "Arcade",
     path: "games/game1/index.html",
-    thumb: "games/game1/hrm.jpg"   // updated to your image
+    thumb: "games/game1/hrm.jpg"
   }
 ];
 
@@ -51,7 +81,9 @@ function render() {
       <small>${g.category}</small>
       <button class="fav">${favorites.includes(g.name) ? "★" : "☆"}</button>
     `;
-    d.onclick = () => player.src = g.path;
+    d.onclick = () => {
+      player.src = g.path;
+    };
     d.querySelector(".fav").onclick = e => {
       e.stopPropagation();
       toggleFav(g.name);
